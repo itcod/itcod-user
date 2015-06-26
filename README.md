@@ -8,12 +8,17 @@ Service "USER"  Management registration USER/USERBOX for ITCOD-DISK
 
 
 -- Copyright (c) 2015 by Yura Vdovytchenko (max@itcod.com)
+
 -- Copyright (c)itcod 2010-2015
 
 local description = {
+
   _COPYRIGHT   = "Yura Vdovytchenko",
+  
   _VERSION     = "itcod-user.lua 15.06.26",
+  
   _URL         = "https://ihome.itcod.com/max/projects/itcod-user/",
+  
   _DESCRIPTION = [[
    Registration userbox for WEBDAV ITCOD structure directory
    Test computation in Lua (5.1)
@@ -43,8 +48,11 @@ local description = {
   ]]
 }
 -----------------------------------------------------------------------------------
+
 --path lua file: /etc/nginx/lua/itcod-user.lua
+
 --Example Nginx virtual example.conf
+
 local example = {
   _NGINX = [[
 server {
@@ -96,56 +104,88 @@ userbox=SUPERUSER/USER или например userbox=SUPER/buper/USER
 КЛЮЧИ ЗАПРОСОВ
 
 Обязательные для любого запроса
+
 userbox - логин регистрируемого пользователя (юзербокса)
+
 cmd - комманда для сервиса (test/add, в развитии del/lock/unlock/newpw)
 
 Необходимые для определённых типов запросов
+
 npw1 - новый пароль
+
 npw2 - новый пароль (повтор)
+
 opw - старый пароль
+
 
 ТИПЫ ЗАПРОСОВ (cmd)
 
 test - проверка наличия пользователя (юзербокса)
+
 add - регистрация пользователя (юзербокса)
+
 del - удаление пользователя [в разработке]
+
 lock - блокировка доступа к юзербоксу [в разработке]
+
 unlock - разблокировка доступа к юзербоксу [в разработке]
+
 newpw - смена пароля [в разработке]
 
+
 ОБЯЗАТЕЛЬНЫЕ ПАРАМЕТРЫ В ЗАПРОСАХ
+
 test - userbox cmd
+
 add - userbox cmd npw1 npw2 (npw12 - пароли админа)
+
 del - userbox cmd npw1 npw2
+
 lock - userbox cmd npw1 npw2
+
 unlock - userbox cmd npw1 npw2
+
 newpw - userbox cmd npw1 npw2 opw
+
 
 ОТВЕТЫ СЕРВИСА
 
 Передаются в теле ответа (body) на отдельной строке между тегами
+
 <!-- START REPLY --> 
 ответ статуса
 <!-- STOP REPLY -->
 
 status=ok - регистрация выполнена полностью
+
 status=usr.none - пользователь не найден (можно регистрировать)
+
 status=usr.found - пользователь существует
+
 status=usr.block - пользователь заблокирован (наличие одноименного пользователя/сервиса или запрет)
+
 status=err.sys - ошибка в процессе обработки запроса
+
 status=err.userbox - ошибка в имени пользователя(юзербокса)
+
 status=err.param - ошибка в параметрах запроса (например отсутствие обязательных)
+
 status=err.cmd - ошибка команды (отсутствие или неизвестна)
+
 status=err.passwd - ошибка пароля (например отсутствие или несовпадение пары)
 
 
+
 ПРИМЕРЫ ЗАПРОСОВ
+
 https://ihome.itcod.com/user/?userbox=USER&cmd=test
+
 https://ihome.itcod.com/user/?userbox=USER&cmd=add&npw1=PASSW&npw2=PASSW
+
 
 ПРИМЕР ОТВЕТА
 
-<!-- START REPLY --> 
+<!-- START REPLY -->
 status=usr.none
 <!-- STOP REPLY -->
 

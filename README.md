@@ -17,7 +17,7 @@ local description = {
   
   _VERSION     = "itcod-user.lua 15.06.26",
   
-  _URL         = "https://ihome.itcod.com/max/projects/itcod-user/",
+  _URL         = "http://ihome.itcod.com/max/projects/itcod-disk/itcod-user/",
   
   _DESCRIPTION = [[
    Registration userbox for WEBDAV ITCOD structure directory
